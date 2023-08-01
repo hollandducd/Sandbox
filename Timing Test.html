@@ -50,22 +50,22 @@
 </div>
     
 <script type="module">
-    const modelViewer = document.querySelector("#shapekey-demo");
-    const bendSlider = document.querySelector("#bend1");
-    const twistSlider = document.querySelector("#twist1");
+    const modelViewer = document.querySelector("#timing-test");
+    const directSlider = document.querySelector("#direct1"); 
     
     modelViewer.interactionPrompt = 'none';
     
-    bendSlider.addEventListener("input", (event) => {
-      modelViewer.animationName = 'bend';
-      modelViewer.currentTime = event.target.value;
-      modelViewer.pause();
-    });
-    
-    twistSlider.addEventListener('input', event => {
-      modelViewer.animationName = 'twist';
-      modelViewer.currentTime = event.target.value;
-      modelViewer.pause();
+    directSlider.addEventListener("input", (event) => {
+      modelViewer.animationName = 'CubeAction';
+      if(event.target.value==0){
+          modelViewer.currentTime=0;
+          modelViewer.endTime=2.48;
+      };
+        else{
+            modelViewer.currentTime = 2.52;
+            modelViewer.endTime = 5;
+        };
+        
     });
 </script>
 
