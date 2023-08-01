@@ -43,7 +43,7 @@
     <div class="controls">
         <div>
             <p>Direction: <span id="bend-value"></span></p>
-            <input id="direct1" type="range" style="width: 200px;" min="0" max="2.5" step="0.5" value="0">
+            <input id="direct1" type="range" style="width: 200px;" min="0" max="2.5" step="2.5" value="0">
         </div>
     </div>
 </model-viewer>
@@ -51,9 +51,13 @@
     
 <script type="module">
     const modelViewer = document.querySelector("#timing-test");
-    const directSlider = document.querySelector("#direct1"); 
+    modelViewer.animationName = 'CubeAction';
+    //const directSlider = document.querySelector("#direct1"); 
     
     modelViewer.interactionPrompt = 'none';
+    if (modelViewer.currentTime >= 2.5){
+        modelViewer.currentTime=0;
+    }
     //let x = 0;
     
     /*directSlider.addEventListener("input", (event) => {
@@ -73,9 +77,7 @@
         
     });
     */
-    if (modelViewer.currentTime >= 2.5){
-        modelViewer.currentTime=0;
-    }
+    
         
 </script>
 
