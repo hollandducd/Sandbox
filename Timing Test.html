@@ -54,10 +54,12 @@
     const directSlider = document.querySelector("#direct1"); 
     
     modelViewer.interactionPrompt = 'none';
+    let x = 0;
     
     directSlider.addEventListener("input", (event) => {
       modelViewer.animationName = 'CubeAction';
-        modelViewer.currentTime = event.target.value;
+        x = event.target.value;
+        modelViewer.currentTime = x;
         
       //modelViewer.currentTime = event.target.value;
       //modelViewer.pause();  
@@ -70,6 +72,10 @@
         }*/
         
     });
+    if (modelViewer.currentTime >= x+2.5){
+        modelViewer.currentTime=x;
+    }
+        
 </script>
 
 </body>
