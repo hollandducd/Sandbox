@@ -43,7 +43,7 @@
     <div class="controls">
         <div>
             <p>Direction: <span id="bend-value"></span></p>
-            <input id="direct1" type="range" style="width: 200px;" min="0" max="1" step="1" value="0">
+            <input id="direct1" type="range" style="width: 200px;" min="0" max="5" step="0.5" value="0">
         </div>
     </div>
 </model-viewer>
@@ -57,13 +57,15 @@
     
     directSlider.addEventListener("input", (event) => {
       modelViewer.animationName = 'CubeAction';
-      if(event.target.value==0){
+      modelViewer.currentTime = event.target.value;
+      modelViewer.pause();  
+      /*if(event.target.value==0){
           modelViewer.currentTime=0;
           modelViewer.endTime=2.48;
       } else{
             modelViewer.currentTime = 2.52;
             modelViewer.endTime = 5;
-        }
+        }*/
         
     });
 </script>
