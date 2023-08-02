@@ -31,69 +31,35 @@
 <h1>Timing Test </h1>
     
 <h2>Heading 2</h2>
-<p>000000000000000000000000000000000000000000000000000000000000000000000000000</p>
+<p>wwwwwwwwwwwwwwww</p>
 
 <model-viewer 
     id="timing-test"
     src="https://hollandducd.github.io/Sandbox/Timing Test.glb"
-    autoplay
-    camera-controls
-    background-color="#ffffff"> 
-
-    <div class="controls">
-        <div>
-            <p>Direction: <span id="bend-value"></span></p>
-            <input id="direct1" type="range" style="width: 200px;" min="0" max="2.5" step="2.5" value="0">
-        </div>
-    </div>
 </model-viewer>
 </div>
     
 <script>
-    const modelViewer = document.querySelector("#timing-test");
-    modelViewer.animationName = 'CubeAction';
-    var duration = 2.5;
-    var clip = 0;
+   // Wait for the DOM to be fully loaded
+    document.addEventListener("DOMContentLoaded", () => {
+      // Get the modelViewer element
+      const modelViewer = document.getElementById("timing-test");
 
-    setInterval(function(){ 
-		  if(modelViewer.currentTime >= duration*(clip+1))
-		  {
-			  modelViewer.currentTime = duration * clip;
-		  }
-  	  }, 10);
+      // Set the threshold value
+      const threshold = 2.5;
 
+      // Create a function to monitor the currentTime property and reset it if needed
+      const monitorCurrentTime = () => {
+        // Check if the currentTime property exists and is greater than the threshold
+        if (modelViewer && modelViewer.currentTime > threshold) {
+          // Reset the currentTime to zero
+          modelViewer.currentTime = 0;
+        }
+      };
 
-    
-    //modelViewer.pause();
-    //    modelViewer.currentTime=1;
-    //const directSlider = document.querySelector("#direct1"); 
-    
-    /*modelViewer.interactionPrompt = 'none';
-    if (modelViewer.currentTime >= 2.5){
-        modelViewer.pause();
-        modelViewer.currentTime=0;
-    }
-    //let x = 0;*/
-    
-    /*directSlider.addEventListener("input", (event) => {
-      modelViewer.animationName = 'CubeAction';
-        x = event.target.value;
-        modelViewer.currentTime = x;
-        
-      //modelViewer.currentTime = event.target.value;
-      //modelViewer.pause();  
-      /*if(event.target.value==0){
-          modelViewer.currentTime=0;
-          modelViewer.endTime=2.48;
-      } else{
-            modelViewer.currentTime = 2.52;
-            modelViewer.endTime = 5;
-        }*/
-        
+      // Set up an interval to continuously monitor the currentTime property
+      setInterval(monitorCurrentTime, 100); // You can adjust the interval duration if needed
     });
-    */
-    
-        
 </script>
 
 </body>
