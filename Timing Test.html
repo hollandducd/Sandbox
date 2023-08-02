@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Timing Test</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+
+<style>
+    model-viewer {
+        width: 800px;
+        height: 800px;
+     }
+        input[type=range]::-webkit-slider-thumb {
+        height : 75px;
+        width : 75px;
+     }
+    body {
+    margin: 50px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+ .container {
+    max-width: 800px;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>Timing Test </h1>
+    
+<h2>Here's a subheading</h2>
+<p>Thank you robot emperor</p>
+
+<model-viewer 
+    id="timing-test"
+    src="https://hollandducd.github.io/Sandbox/linkage-timed1.glb"
+    autoplay animation-name="Animation"
+    camera-target="0m 0m 0m"
+    camera-orbit="90.64deg 87.37deg 42.52m" field-of-view="30deg"
+</model-viewer>
+
+<!-- Add a slider to update the value of "clip" -->
+<input type="range" id="clipSlider" min="0" max="4" step="1" value="0">
+</div>
+    
+<script>
+   // Wait for the DOM to be fully loaded
+    document.addEventListener("DOMContentLoaded", () => {
+      // Get the modelViewer element
+      const modelViewer = document.getElementById("timing-test");
+
+    // Get the slider element
+      const clipSlider = document.getElementById("clipSlider");
+
+      // Set the threshold value and initial clip value
+      const threshold = 2;
+      let clip = 0;
+
+      // Function to update the clip value when the slider value changes
+      clipSlider.addEventListener("input", () => {
+        clip = parseInt(clipSlider.value)*(threshold+1);
+        // Update the currentTime to the start of the selected clip
+        modelViewer.currentTime = clip * threshold;
+      });  
+
+      // Create a function to monitor the currentTime property and reset it if needed
+      const monitorCurrentTime = () => {
+        // Check if the currentTime property exists and is greater than the end of the clip
+        if (modelViewer && (modelViewer.currentTime >= clip + 2 || modelViewer.currentTime < clip)) {
+          // Reset the currentTime to the beginning of the clip
+          modelViewer.currentTime = clip;
+        }
+      };
+
+      // Set up an interval to continuously monitor the currentTime property
+      setInterval(monitorCurrentTime, 50); // You can adjust the interval duration if needed
+    });
+</script>
+
+</body>
+</html>
