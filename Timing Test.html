@@ -31,7 +31,7 @@
 <h1>Timing Test </h1>
     
 <h2>Heading 2</h2>
-<p>ooooooooooooo</p>
+<p>----------------------------------------------------</p>
 
 <model-viewer 
     id="timing-test"
@@ -52,7 +52,19 @@
 <script type="module">
     const modelViewer = document.querySelector("#timing-test");
     modelViewer.animationName = 'CubeAction';
-    modelViewer.pause();
+    var duration = 2.5;
+    var clip = 0;
+
+    setInterval(function(){ 
+		  if(modelViewer.currentTime >= duration*(clip+1))
+		  {
+			  modelViewer.currentTime = duration * clip;
+		  }
+  	  }, 10);
+
+
+    
+    //modelViewer.pause();
     //    modelViewer.currentTime=1;
     //const directSlider = document.querySelector("#direct1"); 
     
