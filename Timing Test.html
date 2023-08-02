@@ -31,7 +31,7 @@
 <h1>Timing Test </h1>
     
 <h2>Heading 2</h2>
-<p>777777777777777777777777777777777</p>
+<p>11111111111111111111111111111111111111111111</p>
 
 <model-viewer 
     id="timing-test"
@@ -66,7 +66,7 @@
       // Create a function to monitor the currentTime property and reset it if needed
       const monitorCurrentTime = () => {
         // Check if the currentTime property exists and is greater than the end of the clip
-        if (modelViewer && ((modelViewer.currentTime >= (clip+1) * threshold)||(modelViewer.currentTime < clip+ * threshold))) {
+        if (modelViewer && ((modelViewer.currentTime >= (clip+1) * threshold)||(modelViewer.currentTime < clip * threshold))) {
           // Reset the currentTime to teh beginning of the clip
           modelViewer.currentTime = clip * threshold;
         }
